@@ -1,0 +1,76 @@
+body{
+	
+background-attachment: fixed;
+background-image: url("fundo.jpeg");
+background-repeat: no-repeat;
+background-position: center 0;
+background-size: auto;
+
+
+}
+#base{
+
+       width: 100vw;
+       height: 100vh;
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center
+    
+
+}
+.login{
+
+background: #eee;
+border-radius: 10px;
+box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+float: left;
+margin: -50px 0px -50px 3%;
+padding: 50px;
+position: relative;
+width: 50%;
+
+
+}
+.logo{
+	display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center
+}
+#titulo{
+	font-family: 'Exo 2';
+	font-size: 70px;
+	color: #145719;
+
+
+}
+#subtitulo{
+	font-family: 'Exo 2';
+	color: #145719;
+       width: 30%;
+}
+#botaoSub{
+	background-color: #145719;
+
+
+}
+.labelLog{
+       color:#145719;
+}
+.campoLog{
+       height: 30%;
+}
+#subtitulo2{
+       color: black-grey;
+       font-family: 'Exo 2';
+}
+#texto{
+       color: black-grey;
+       font-family: 'Arial';
+}
+
+a.linkLogo:hover{
+    text-decoration: none;
+    
+}
