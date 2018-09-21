@@ -26,7 +26,11 @@ border-radius: 10px;
 box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 float: left;
 margin: -50px 0px -50px 3%;
+<<<<<<< HEAD
 padding: 50px;
+=======
+padding: 60px;
+>>>>>>> master
 position: relative;
 width: 50%;
 
@@ -48,12 +52,17 @@ width: 50%;
 #subtitulo{
 	font-family: 'Exo 2';
 	color: #145719;
+<<<<<<< HEAD
        width: 30%;
+=======
+
+>>>>>>> master
 }
 #botaoSub{
 	background-color: #145719;
 
 
+<<<<<<< HEAD
 }
 .labelLog{
        color:#145719;
@@ -73,4 +82,6 @@ width: 50%;
 a.linkLogo:hover{
     text-decoration: none;
     
+=======
+>>>>>>> master
 }
