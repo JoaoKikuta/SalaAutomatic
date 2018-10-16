@@ -20,9 +20,9 @@
 		</a>
 		<br>
 		<br>
-		<form action="<?php echo htmlspecialchars("ValidarLog.php");?>" method="POST">
+		<form action="<?php echo htmlspecialchars("verificaLog.php");?>" method="POST">
 			<div id="user">
-				<label class="labelLog">Usuário:</label>
+				<label class="labelLog">Siape:</label>
 				<br>
 				<input type="text" name="user" class="form-control" class="campoLog" required="">
 				<br>

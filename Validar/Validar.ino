@@ -5,7 +5,8 @@ int getFingerprintIDez();
 
 SoftwareSerial mySerial(2, 3);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
-int ID = 0;
+uint8_t ID;
+uint8_t ID2 = 0;
 void setup()  {  
   Serial.begin(9600);
   Serial.println("Iniciando Leitor Biometrico");
@@ -14,7 +15,7 @@ void setup()  {
   finger.begin(57600);
   
   if (finger.verifyPassword()) {
-    Serial.println("Leitor Biometrico Encontrado");
+    
   } else {
     Serial.println("Leitor Biometrico nao encontrada");
     while (1);
@@ -25,16 +26,9 @@ void setup()  {
 
 void loop()                   
 {
-  
   getFingerprintIDez();
-  delay(50);
-  if(ID == 1){
-    digitalWrite(8, HIGH);
-  }
-  else{
-    digitalWrite(8, LOW);
-  }
-
+  delay(1000);
+ 
 }
 
 uint8_t getFingerprintID() {
@@ -82,6 +76,7 @@ uint8_t getFingerprintID() {
   p = finger.fingerFastSearch();
   if (p == FINGERPRINT_OK) {
     Serial.println("Digital Encontrada");
+ 
     
   } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
     Serial.println("Erro ao se comunicar");
@@ -104,20 +99,25 @@ uint8_t getFingerprintID() {
 int getFingerprintIDez() {
   uint8_t p = finger.getImage();
   if (p != FINGERPRINT_OK) return -1;
-
-
   p = finger.image2Tz();
   if (p != FINGERPRINT_OK) return -1;
 
   p = finger.fingerFastSearch();
   if (p != FINGERPRINT_OK){  
-    ID = 0;
+    Serial.println("ID Nao encontrado");
+    digitalWrite(8, LOW);
     return -1;
+     
+    
+    
 
 }
-  ID = 1;
+  ID = p;
+  digitalWrite(8, HIGH);
   Serial.print("ID # Encontrado"); 
-  Serial.print(finger.fingerID); 
-  return finger.fingerID; 
+  Serial.println(finger.fingerID); 
+  delay(1000);
+
+
 }
 

@@ -2,11 +2,9 @@
 $User = $_POST['user'];
 $Senha = $_POST['senha'];
 
-include_once "ConexaoDB.php";
-$conexao = new ConexaoDB();
+include_once "ConexaoBD.php";
+$conexao = new ConexaoBD();
 $conexao->verificaLogin($User,$Senha);
-
-
 
 
 
