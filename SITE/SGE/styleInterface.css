@@ -58,3 +58,6 @@
 .nav > li > a:hover, .nav > li > a:focus, .nav .open > a:hover, .nav .open > a:focus{
 	background-color: green;
 }
+.tamanho{
+  width: 100%;
+}

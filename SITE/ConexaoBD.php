@@ -49,7 +49,7 @@ class ConexaoBD {
 
 
     //email
-    public function verificaemail($email,$data_envio, $hora_envio, $arquivo){
+    public function verificaemail($email,$data_envio, $hora_envio){
         try{
             $list = new ArrayObject();
             session_start();
@@ -76,7 +76,22 @@ class ConexaoBD {
 
 
 
+                $arquivo = 
+            "<Body>
 
+                <h1>SGE: Sistema de Gerenciamento Energético </h1>
+                <br>
+                <h3>Não responda esse E-mail</h3>
+                <p>para alterar a senha, acesse esse link: '<a href=localhost/SalaAutomatica/SITE/mudarSenha.php?token=$token><p>mudarSenha.php?token=$token</p></a>'</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>Se você não solicitou essa alteração de senha, desconsidere esse E-mail.
+                <p>$data_envio
+                $hora_envio</p>
+        
+         </body>";
 
                 require '/usr/share/php/libphp-phpmailer/class.phpmailer.php';
                 require '/usr/share/php/libphp-phpmailer/class.smtp.php';
