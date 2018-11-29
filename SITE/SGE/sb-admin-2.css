@@ -432,3 +432,39 @@ table.dataTable thead .sorting:after {
     border-left-width: 0;
   }
 }
+
+
+#content2 {
+  margin: 40px auto;
+  text-align: center;
+  width: 85%;
+  display: flex;
+}
+#content h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 0 40px 0;
+  font-size: 25px;
+  line-height: 30px;
+}
+.circle2 {
+  width: 155px;
+  height: 155px;
+  line-height: 150px;
+  border-radius: 50%; /* the magic */
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  text-align: center;
+  color: black;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 auto 10px;
+  border: 1px solid black;
+ 
+}
+.feedback {
+  font-size: 14px;
+  color: #b1b1b1;
+}
+

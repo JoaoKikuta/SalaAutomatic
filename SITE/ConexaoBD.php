@@ -1,6 +1,9 @@
 <?php
 class ConexaoBD {
     private $conn;
+    public function getConn(){
+        return $this->conn;
+    }
     public function __construct() {
         try{
 
@@ -8,7 +11,7 @@ class ConexaoBD {
 
             $dsn = "mysql:host=localhost;dbname=sge";
             $username = "joao";
-            $password = "@Ifms2018";
+            $password = "BAZINGA";
             $this->conn = new PDO($dsn, $username, $password);
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -26,7 +29,7 @@ class ConexaoBD {
             $list = new ArrayObject();
             session_start();
             include_once 'usuario.php';
-            $result = $this->conn->query("SELECT * FROM Servidores WHERE siape='$User' and Senha='$Senha'");
+            $result = $this->conn->query("SELECT * FROM servidores WHERE siape='$User' and Senha='$Senha'");
 
              if ($row = $result->fetch(PDO::FETCH_ASSOC)){
                  $usuario = new usuario();
@@ -34,7 +37,7 @@ class ConexaoBD {
                  $_SESSION["logado"] = TRUE;
                  $_SESSION["User"] = $User; 
                  
-                 header("Location: index.php");
+                 header("Location: SGE/home.php");
                  return $list;
                  
                    
@@ -134,8 +137,6 @@ class ConexaoBD {
             //print "Erro ao buscar lista de clientes";
         }
     }
-
-
 
 
 }

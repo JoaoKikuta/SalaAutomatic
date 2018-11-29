@@ -1,9 +1,65 @@
 <?php
+
+require "verifica.php";
+
+$user = $_SESSION['User'];
+        $conn;
+        
+        try{
+            $dsn = "mysql:host=localhost;dbname=sge";
+            $username = "joao";
+            $password = "BAZINGA";
+
+            $conn = new PDO($dsn, $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                try{
+                    $list = new ArrayObject();
+                    
+                    $result = $conn->query("SELECT * FROM servidores WHERE siape='$user'");
+
+                   
+                    }catch (PDOException $usuario){
+                        print "Erro ao buscar lista de clientes";
+                    
+                        }
+        }catch (PDOException $erro){
+            
+        print "A conexão com o banco deu errado: ".$erro;
+        }
+        
+
+
 ?>
 <!DOCTYPE html>
 <html>
+
+<script type="text/javascript">
+function startTime()
+{
+var today=new Date();
+var h=today.getHours();
+var m=today.getMinutes();
+var s=today.getSeconds();
+// adicione um zero na frente de números<10
+m=checkTime(m);
+s=checkTime(s);
+document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+t=setTimeout('startTime()',500);
+}
+function checkTime(i)
+{
+if (i<10)
+{
+i="0" + i;
+}
+return i;
+}
+</script>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
+    <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,7 +69,7 @@
 
 
 
-     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -30,7 +86,7 @@
     <link rel="stylesheet" href="styleInterface.css">
  
 </head>
-<body>
+<body onload="startTime()">
     <div id="wrapper">
 
          <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #005500 ">
@@ -111,22 +167,28 @@
                         <i class="fa fa-user fa-fw" id="iconeCor" ></i> <i class="fa fa-caret-down" id="iconeCor"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil
+                        </a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="./index.php"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        <li><a href="destroi.php"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
-        
+            
 
             <div class="navbar-default sidebar" role="navigation">
+                
                 <div class="sidebar-nav navbar-collapse">
+                    <div id="content2">
+                    <a href="#"><div class="circle1"><img src=""></div></a>
+                    <a href="#" class="linkNome"><p class="nome"><?php echo $result->nome; ?></p></a>
+                </div>  
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
@@ -139,21 +201,22 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Painel</a>
+                            <a href="index.html" class="link"><i class="fa fa-dashboard fa-fw"></i> Painel</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Consumo</a>
+                            <a href="#" class="link"><i class="fa fa-bar-chart-o fa-fw"></i> Consumo</a>
                             
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-tasks fa"></i>  Dispositivos</a>
+                            <a href="tables.html" class="link"><i class="fa fa-tasks fa"></i>  Dispositivos</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Histórico</a>
+                            <a href="forms.html" class="link"><i class="fa fa-edit fa-fw"></i> Histórico</a>
                         </li>
-                        
+              </ul>          
         </nav>
 
 

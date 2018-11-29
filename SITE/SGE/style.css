@@ -1,0 +1,82 @@
+#content2 {
+  margin: 5px auto;
+  text-align: center;
+  width: 80%;
+}
+.circle1 {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  border-radius: 50%; /* the magic */
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  text-align: center;
+  color: black;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 auto 1px;
+  border: 1px solid #000;
+ 
+}
+.feedback {
+  font-size: 14px;
+  color: #b1b1b1;
+}
+.nome{
+  font-size: 24px;
+}
+.linkNome{
+  color: black;
+}
+ 
+a.linkNome:link {
+    color:black;
+    text-decoration: none;
+}
+
+/* visited link */
+a.linkNome:visited {
+    color: black;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a.linkNome:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/* selected link */
+a.linkNome:active {
+    color: black;
+    text-decoration: none;
+}
+
+.link{
+  color: black;
+}
+ 
+a.link:link {
+    color:black;
+    text-decoration: none;
+}
+
+/* visited link */
+a.link:visited {
+    color: black;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a.link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* selected link */
+a.link:active {
+    color: black;
+    text-decoration: none;
+}
+

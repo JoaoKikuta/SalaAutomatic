@@ -10,6 +10,29 @@
 	<title>SGE: Sistema de Gerenciamento Energético</title>
 </head>
 <body>
+	<?php
+
+	$tokenNet = $_GET['token'] ;
+	if (isset($token)) {
+	include_once "ConexaoBD.php";
+	$conexao = new ConexaoBD();
+	$siape;
+
+	$result = $conexao->getConn()->query("SELECT DISTINCT s.siape FROM token t, Servidores s WHERE num_token='$tokenNet' AND t.siape = s.siape AND $tokenNet <=   t.nun_token +1");
+
+	if (!($row = $result->fetch(PDO::FETCH_ASSOC))){
+		header("Location: index.php");
+	}else{
+		$siape = $row['siape'];
+		$_SESSION["siape"] = $siape; 
+		
+         
+	}
+}else{
+	print $result;
+	//header("Location: index.php");
+}
+?>
 <div id="base">
 	<div class="login">
 		<a href="index.php" class="linkLogo">
@@ -52,22 +75,6 @@
 </div>
 
 
-<?php
-	$token = $_GET['token'] ;
-	include_once "ConexaoBD.php";
-	$conexao = new ConexaoBD();
-	$siape;
 
-	$result = $this->conn->query("SELECT DISTINCT(s) FROM token t, Servidores s WHERE num_token='$token' AND t.siape = s.siape");
-
-	if (!($row = $result->fetch(PDO::FETCH_ASSOC))){
-		header("Location: index.php");
-	}else{
-		$siape = $row['siape'];
-		$_SESSION["siape"] = $siape; 
-		
-         
-	}
-?>
 </body>
 </html> 
