@@ -1,5 +1,4 @@
 <?php
-
 require "verifica.php";
 
 $user = $_SESSION['User'];
@@ -16,8 +15,18 @@ $user = $_SESSION['User'];
                     $list = new ArrayObject();
                     
                     $result = $conn->query("SELECT * FROM servidores WHERE siape='$user'");
+                    $row = $result->fetch(PDO::FETCH_ASSOC);
 
-                   
+                    $_SESSION["nome"] = $row["nome"];
+                    $_SESSION["foto"] = $row["foto"];
+                    $id = $row["idServidores"];
+
+                    $historico = $conn->query("SELECT * FROM historico WHERE servidores_idServidores='$id'");
+                    $mostra = $historico->fetch(PDO::FETCH_ASSOC);
+
+                    $_SESSION["entrada"] = $mostra["entrada"];
+                    $_SESSION["saida"] =    $mostra["saida"];
+
                     }catch (PDOException $usuario){
                         print "Erro ao buscar lista de clientes";
                     
@@ -186,8 +195,8 @@ return i;
                 
                 <div class="sidebar-nav navbar-collapse">
                     <div id="content2">
-                    <a href="#"><div class="circle1"><img src=""></div></a>
-                    <a href="#" class="linkNome"><p class="nome"><?php echo $result->nome; ?></p></a>
+                    <a href="#"><div class="circle1"><img src="<?php echo $_SESSION["foto"]; ?>" class="imagensUser"></div></a>
+                    <a href="#" class="linkNome"><div class="nomeDiv"><p class="nome"><?php echo $_SESSION["nome"]; ?></p></div></a>
                 </div>  
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">

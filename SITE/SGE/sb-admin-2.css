@@ -435,17 +435,10 @@ table.dataTable thead .sorting:after {
 
 
 #content2 {
-  margin: 40px auto;
+  margin: 10px 50px 40px;
   text-align: center;
   width: 85%;
   display: flex;
-}
-#content h1 {
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 0 40px 0;
-  font-size: 25px;
-  line-height: 30px;
 }
 .circle2 {
   width: 155px;
@@ -461,10 +454,15 @@ table.dataTable thead .sorting:after {
   font-weight: 700;
   margin: 0 auto 10px;
   border: 1px solid black;
+  overflow: hidden;
  
 }
-.feedback {
-  font-size: 14px;
-  color: #b1b1b1;
+.imagensUser {
+  bottom: 0;
+  border-radius: 50%;
+  width: 90%
 }
-
+.nome{
+  position: relative;
+  top: 150px;
+}
