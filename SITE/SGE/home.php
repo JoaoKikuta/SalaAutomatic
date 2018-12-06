@@ -21,11 +21,15 @@ $user = $_SESSION['User'];
                     $_SESSION["foto"] = $row["foto"];
                     $id = $row["idServidores"];
 
+
                     $historico = $conn->query("SELECT * FROM historico WHERE servidores_idServidores='$id'");
                     $mostra = $historico->fetch(PDO::FETCH_ASSOC);
 
+
+                    $_SESSION["id"] = $mostra["id"];
                     $_SESSION["entrada"] = $mostra["entrada"];
                     $_SESSION["saida"] =    $mostra["saida"];
+                    $_SESSION["dispositivo"] = $mostra["Dispositivos_id"];
 
                     }catch (PDOException $usuario){
                         print "Erro ao buscar lista de clientes";
@@ -316,60 +320,23 @@ return i;
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Data</th>
-                                                    <th>Hora de Entrada</th>
+                                                    <th>Entrada</th>
                                                     <th>Hora de saida</th>
+                                                    <th>Dispositivo</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody><?php 
+                                            for ($i=0; $i <= count($mostra) ; $i++) { 
+                                                                                           ?>
                                                 <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-                                                    <td>$321.33</td>
+                                                    <td><?php  echo $_SESSION['id']  ?></td>
+                                                    <td><?php  echo $_SESSION['entrada']  ?></td>
+                                                    <td><?php  echo $_SESSION['saida']  ?></td>
+                                                    <td><?php  echo $_SESSION['dispositivo']  ?></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>3325</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:20 PM</td>
-                                                    <td>$234.34</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3324</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:03 PM</td>
-                                                    <td>$724.17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3323</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:00 PM</td>
-                                                    <td>$23.71</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3322</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:49 PM</td>
-                                                    <td>$8345.23</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3321</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:23 PM</td>
-                                                    <td>$245.12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3320</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:15 PM</td>
-                                                    <td>$5663.54</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3319</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:13 PM</td>
-                                                    <td>$943.45</td>
-                                                </tr>
+                                            <?php  
+                                            }
+                                            ?>
                                             </tbody>
                                         </table>
                                     </div>

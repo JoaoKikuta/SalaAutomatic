@@ -12,6 +12,6 @@ $hora_envio = date('H:i:s');
 
 include_once "ConexaoBD.php";
 $conexao = new ConexaoBD();
-$conexao->verificaEmail($email,$data_envio,$hora_envio,$arquivo);
+$conexao->verificaEmail($email,$data_envio,$hora_envio);
 
 ?>

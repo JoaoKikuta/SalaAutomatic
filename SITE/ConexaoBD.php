@@ -57,7 +57,7 @@ class ConexaoBD {
             $list = new ArrayObject();
             session_start();
             include_once 'emailServidores.php';
-            $result = $this->conn->query("SELECT * FROM Servidores WHERE email='$email'");
+            $result = $this->conn->query("SELECT * FROM servidores WHERE email='$email'");
 
              if ($row = $result->fetch(PDO::FETCH_ASSOC)){
 
@@ -65,11 +65,12 @@ class ConexaoBD {
                 $numero = rand();
                 $token = md5($numero);
                 $siape = $row['siape'];
+                date_default_timezone_set('America/Sao_Paulo');
                 $dataAtual = date('Y-m-d h:i:s');
 
-                print("INSERT INTO token (nun_token, siape, criacao) 
-                    VALUES ('$token', '$siape','$dataAtual')");
-                $salva = $this->conn->prepare("INSERT INTO token (num_token, siape, criacao) 
+                //print("INSERT INTO token (nun_token, servidores_siape, criacao) 
+                   // VALUES ('$token', '$siape','$dataAtual')");
+                $salva = $this->conn->prepare("INSERT INTO token (num_token, servidores_siape, criacao) 
                     VALUES (:ntoken, :siape,:criacao)");
                 $salva->bindParam('ntoken', $token);
                 $salva->bindParam('siape', $siape);
@@ -87,10 +88,9 @@ class ConexaoBD {
                 <h3>Não responda esse E-mail</h3>
                 <p>para alterar a senha, acesse esse link: '<a href=localhost/SalaAutomatica/SITE/mudarSenha.php?token=$token><p>mudarSenha.php?token=$token</p></a>'</p>
                 <br>
+                <p>Esse link tem durãção de 24 horas</p>
                 <br>
-                <br>
-                <br>
-                <p>Se você não solicitou essa alteração de senha, desconsidere esse E-mail.
+                <p>Se você não solicitou essa alteração de senha, desconsidere esse E-mail.</p>
                 <p>$data_envio
                 $hora_envio</p>
         
@@ -135,6 +135,32 @@ class ConexaoBD {
         catch (PDOException $usuario){
             print $usuario;
             //print "Erro ao buscar lista de clientes";
+        }
+    }
+
+    public function NovaSenha($token,$senhaNova){
+        try{
+            $list = new ArrayObject();
+            $result = $this->conn->query("UPDATE servidores SET senha = $senhaNova WHERE  ");
+
+             if ($row = $result->fetch(PDO::FETCH_ASSOC)){
+                
+
+                echo ($row['senha']);
+
+    
+
+                 //header("Location: index.php");
+                 
+                 
+                   
+             }else{
+                echo "faile";
+                // header("Location: loginErrado.php");
+            }
+        }
+        catch (PDOException $usuario){
+            print "Erro ao buscar lista de clientes";
         }
     }
 
