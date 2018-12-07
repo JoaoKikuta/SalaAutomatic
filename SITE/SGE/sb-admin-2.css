@@ -434,33 +434,7 @@ table.dataTable thead .sorting:after {
 }
 
 
-#content2 {
-  margin: 10px 50px 40px;
-  text-align: center;
-  width: 85%;
-  display: flex;
-}
-.circle2 {
-  width: 155px;
-  height: 155px;
-  line-height: 150px;
-  border-radius: 50%; /* the magic */
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  text-align: center;
-  color: black;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 auto 10px;
-  border: 1px solid black;
-  overflow: hidden;
- 
-}
-.imagensUser {
-  bottom: 0;
-  border-radius: 50%;
-  width: 90%
-}
+
+
 
   

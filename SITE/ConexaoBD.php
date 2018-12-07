@@ -37,9 +37,14 @@ class ConexaoBD {
                  $_SESSION["logado"] = TRUE;
                  $_SESSION["User"] = $User; 
                  
-                 header("Location: SGE/home.php");
-                 return $list;
-                 
+                 if ($row["interface"] == "adm") {
+                    header("Location: SGE/homeAdm.php");
+                    
+                 }elseif ($row["interface"] == "cli") {
+                     
+                     header("Location: SGE/home.php");
+                     return $list;
+                 }
                    
              }else{
                  header("Location: loginErrado.php");
@@ -138,29 +143,36 @@ class ConexaoBD {
         }
     }
 
-    public function NovaSenha($token,$senhaNova){
+    public function NovaSenha($senhaNova,$token){
+        //print "UPDATE servidores SET senha='$senhaNova' WHERE siape = (SELECT servidores_siape FROM token WHERE num_token LIKE '$token')";
         try{
+
             $list = new ArrayObject();
-            $result = $this->conn->query("UPDATE servidores SET senha = $senhaNova WHERE  ");
+            $result = $this->conn->query("UPDATE servidores SET senha='$senhaNova' WHERE siape = (SELECT servidores_siape FROM token WHERE num_token LIKE '$token')");
 
-             if ($row = $result->fetch(PDO::FETCH_ASSOC)){
+
+
+            
+             if ( $result){
                 
+                $apaga = $this->conn->query("DELETE FROM token WHERE num_token='$tokenNet'");
 
-                echo ($row['senha']);
-
-    
-
-                 //header("Location: index.php");
-                 
-                 
+                
+                session_start();
+                $_SESSION['ok'] = "Senha Alterada";
+                header("Location: index.php");
                    
              }else{
-                echo "faile";
+                $_SESSION['ok'] = " ";
+                
+                header("Location: index.php");
                 // header("Location: loginErrado.php");
             }
         }
         catch (PDOException $usuario){
             print "Erro ao buscar lista de clientes";
+            //print $usuario->getMessage();
+            
         }
     }
 

@@ -22,14 +22,17 @@ $user = $_SESSION['User'];
                     $id = $row["idServidores"];
 
 
-                    $historico = $conn->query("SELECT * FROM historico WHERE servidores_idServidores='$id'");
+                    $historico = $conn->query("SELECT * FROM historico h INNER JOIN Dispositivos d on h.Dispositivos_id = d.id");
+
+
 
 
                     
-                    $dispositivos = $conn->query("SELECT * FROM historico WHERE ISNULL(saida) AND '$id' = servidores_idServidores");
+
+                    $dispositivos = $conn->query("SELECT * FROM historico WHERE ISNULL(saida)");
                     $count = $dispositivos->rowCount(); 
 
-                    
+                   
 
                     }catch (PDOException $usuario){
                         print "Erro ao buscar lista de clientes";
@@ -258,7 +261,7 @@ function auto_reload()
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $count?></div>
+                                    <div class="huge"><?php echo $count; ?></div>
                                     <div>Dispositivo Conectados</div>
                                 </div>
                             </div>
@@ -312,15 +315,15 @@ function auto_reload()
                                                 </tr>
                                             </thead>
                                             <tbody><?php 
-                                            while ($mostra = $historico->fetch(PDO::FETCH_ASSOC)) {
+                                            while ( $mostra = $historico->fetch(PDO::FETCH_ASSOC)) {
                                                  # code...
-                                            
-                                                                                           ?>
+                                          
+                                                        ?>
                                                 <tr>
                                                     <td><?php  echo $mostra['id']  ?></td>
                                                     <td><?php  echo $mostra['entrada']  ?></td>
                                                     <td><?php  echo $mostra['saida']  ?></td>
-                                                    <td><?php  echo $mostra['Dispositivos_id']  ?></td>
+                                                    <td><?php  echo $mostra['localizacao'] ?></td>
                                                 </tr>
                                             <?php  
                                             }
